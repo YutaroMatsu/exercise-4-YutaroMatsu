@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Exercise 4.1 – SVG House & Garden</title>
+  <style>
+    body{font-family:system-ui,Segoe UI,Arial,sans-serif;margin:24px}
+    figure{margin:0}
+    figcaption{margin-top:8px;font-size:0.95rem;color:#444}
+    .caption{margin-top:16px}
+    svg{border:1px solid #c8c8c8; background:#eaf5ff}
+    .grass{fill:#c9f2b2}
+    .house-body{fill:#ffd9a3; stroke:#b87333; stroke-width:2}
+    .roof{fill:#b84d3a}
+    .door{fill:#7b5b36; stroke:#3f2e1c; stroke-width:2}
+    .sun{fill:#ffd44d}
+    .path{fill:#e6e0d6; stroke:#c0b8ae}
+    .window rect{fill:#bfe7ff; stroke:#2d5f85; stroke-width:2}
+    .window line{stroke:#2d5f85; stroke-width:2}
+    .tree-trunk{fill:#8b5a2b}
+    .tree-crown{fill:#4caf50}
+  </style>
+</head>
+<body>
+
+<h1>Exercise 4.1 – Draw SVGs</h1>
+<p>SVG で家と庭を描画し、<code>&lt;g&gt;</code> グループと <code>transform/translate</code> を使って窓を配置しています。</p>
+
+<figure>
+  <svg id="scene" width="820" height="520" viewBox="0 0 820 520" aria-label="House and garden with SVG">
+    <!-- ground -->
+    <rect class="grass" x="0" y="360" width="820" height="160"></rect>
+
+    <!-- house body -->
+    <rect class="house-body" x="260" y="220" width="280" height="180" rx="6"></rect>
+
+    <!-- roof (polygon) -->
+    <polygon class="roof" points="250,220 400,120 540,220"></polygon>
+
+    <!-- door -->
+    <rect class="door" x="370" y="300" width="60" height="100" rx="4"></rect>
+    <!-- door knob -->
+    <circle cx="422" cy="352" r="4" fill="#f3d38a"></circle>
+
+    <!-- windows group wrapper -->
+    <g id="windows" transform="translate(0,0)">
+      <!-- template window (will be re-used with translate) -->
+      <g class="window" transform="translate(295,250)">
+        <rect x="0" y="0" width="70" height="55" rx="3"></rect>
+        <line x1="35" y1="0" x2="35" y2="55"></line>
+        <line x1="0" y1="27.5" x2="70" y2="27.5"></line>
+      </g>
+
+      <!-- 2つ目の窓は translate で右へ移動 -->
+      <g class="window" transform="translate(435,250)">
+        <rect x="0" y="0" width="70" height="55" rx="3"></rect>
+        <line x1="35" y1="0" x2="35" y2="55"></line>
+        <line x1="0" y1="27.5" x2="70" y2="27.5"></line>
+      </g>
+    </g>
+
+    <!-- sun -->
+    <circle class="sun" cx="120" cy="90" r="40"></circle>
+
+    <!-- garden path (polyline-ish path) -->
+    <path class="path" d="M 400 420 L 390 520 L 430 520 L 420 420 Z"></path>
+
+    <!-- tree -->
+    <rect class="tree-trunk" x="620" y="320" width="20" height="80"></rect>
+    <circle class="tree-crown" cx="630" cy="300" r="35"></circle>
+    <circle class="tree-crown" cx="655" cy="320" r="30"></circle>
+    <circle class="tree-crown" cx="605" cy="320" r="30"></circle>
+
+    <!-- axis reference dots to理解用（提出時は残してOK） -->
+    <circle cx="0" cy="0" r="3" fill="#111"></circle>
+    <text x="8" y="16" fill="#333" font-size="12">(0,0)</text>
+  </svg>
+  <figcaption>Figure: House & Garden (SVG primitives: rect, circle, polygon, path, line, text, g)</figcaption>
+</figure>
+
+<p class="caption"><strong>Coordinate tips:</strong> SVG の原点は左上 (0,0)。x は右に増加、y は下に増加します。</p>
+
+</body>
+</html>
